@@ -1,0 +1,16 @@
+version: "2"
+services: 
+    elasticsearch:
+        image: elasticsearch:6.8.6
+        environment:
+            - node.name=es01
+            - cluster.name=es-docker-cluster
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        ports: 
+            - 9200:9200
+        volumes: 
+            - ./data:/usr/share/elasticsearch/data
